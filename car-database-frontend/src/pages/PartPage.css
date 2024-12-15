@@ -1,0 +1,65 @@
+/* src/pages/PartPage.css */
+
+.part-page {
+    margin-top: 80px;
+    padding: 20px;
+  }
+  
+  .part-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .part-item {
+    display: flex;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .part-image {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .part-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .part-info {
+    flex: 2;
+  }
+  
+  .part-info h3 {
+    margin: 0;
+  }
+  
+  .part-form {
+    margin-top: 20px;
+  }
+  
+  .part-form input,
+  .part-form textarea,
+  .part-form button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .part-form button {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .part-form button:hover {
+    background-color: #45a049;
+  }
+  
