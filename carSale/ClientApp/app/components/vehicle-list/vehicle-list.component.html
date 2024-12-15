@@ -1,0 +1,59 @@
+<h2>Vehicles</h2>
+<br>
+<a *ngIf="authService.isModeratorOrAdmin()" [routerLink]="['/vehicles','new']">
+  <button class="btn btn-primary">New Vehicle</button>
+  <br>
+  <br>
+</a>
+
+<div class="well">
+  <div class="form-group">
+    <label for="make">Make</label>
+    <select [(ngModel)]="query.makeId" (change)="onMakeChanges()" id="make" class="form-control">
+      <option value=""></option>
+      <option *ngFor="let m of makes" [value]="m.id">{{m.name}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="model">Model</label>
+    <select [(ngModel)]="query.modelId" (change)="onModelChnages()" id="model" class="form-control">
+      <option value=""></option>
+      <option *ngFor="let m of models" [value]="m.id">{{m.name}}</option>
+    </select>
+  </div>
+  <button class="btn btn-default" (click)="resetFilter()">Reset</button>
+</div>
+<table class="table table-responsive table-striped">
+  <thead>
+    <tr>
+      <th *ngFor="let c of coloums">
+        <div *ngIf="c.isSortable" (click)="sortBy(c.key)">
+          {{c.title}}
+          <i *ngIf="query.sortBy !== c.key" class="fa fa-sort"></i>
+          <i *ngIf="query.sortBy === c.key" class="fa" [class.fa-sort-desc]="!query.isSortAscending" [class.fa-sort-asc]="query.isSortAscending">
+          </i>
+        </div>
+        <div *ngIf="!c.isSortable">
+          {{c.title}}
+        </div>
+      </th>
+    </tr>
+  </thead>
+  <tbody *ngIf="queryResult?.items?.length != 0">
+    <tr *ngFor="let v of queryResult.items">
+      <td>{{v.id}}</td>
+      <td>{{v.make.name}}</td>
+      <td>{{v.model.name}}</td>
+      <td>{{v.contact.name}}</td>
+      <td>
+        <a [routerLink]="['/vehicles', v.id]">View</a>
+      </td>
+    </tr>
+  </tbody>
+  <tbody *ngIf="queryResult?.items?.length == 0">
+    <tr>
+      <td  class="text-center" colspan="4">No results</td>
+    </tr>
+  </tbody>
+</table>
+<app-pagination [total-items]="queryResult.totalItems" [page-size]="query.pageSize" (page-changed)= "onPageChnaged($event)"></app-pagination>

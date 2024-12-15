@@ -1,0 +1,57 @@
+<h1>Vehicle Details</h1>
+<br>
+<ul class="nav nav-tabs">
+  <li class="active">
+    <a data-toggle="tab" href="#basic">Vehicle</a>
+  </li>
+  <li>
+    <a data-toggle="tab" href="#photos">Photos</a>
+  </li>
+</ul>
+
+<div *ngIf="vehicle" class="tab-content">
+  <div id="basic" class="tab-pane fade in active">
+    <h3>Basic</h3>
+    <ul>
+      <li>Make: {{vehicle.make.name}}</li>
+      <li>Model: {{vehicle.model.name}}</li>
+      <li>Registered: {{vehicle.isRegistered ? "Yes": "No"}}</li>
+    </ul>
+
+    <h3>Features</h3>
+    <ul>
+      <li *ngFor="let f of vehicle.features">
+        {{f.name}}
+      </li>
+    </ul>
+
+    <h3>Contact</h3>
+    <ul>
+      <li>Name: {{vehicle.contact.name}}</li>
+      <li>Phone: {{vehicle.contact.phone}}</li>
+      <li>Email: {{vehicle.contact.email || "Not Provided"}}</li>
+    </ul>
+    <br>
+    <div>
+      <a *ngIf="authService.isModeratorOrAdmin()" [routerLink]="['/vehicles', 'edit', vehicle.id]" class="btn btn-primary">Edit</a>
+      <button *ngIf="authService.isModeratorOrAdmin()" (click)="onDelete()" class="btn btn-danger">Delete</button>
+      <a [routerLink]="['/vehicles']" class="btn btn-default">View All Vehicles</a>
+    </div>
+  </div>
+  <div id="photos" class="tab-pane fade">
+    <h3>Photos</h3>
+    <div *ngIf="authService.isModeratorOrAdmin()" >
+      <input type="file" accept=".jpg, .jpeg, .png" #fileInput (change)="uploadPhoto()">
+      <p>(Under 1MB, Supported format: jpeg, jpg, png)</p>
+    </div>
+    <br>
+    <div *ngIf="photos?.length != 0" class="images">
+      <div class="image" *ngFor="let p of photos">
+        <img [src]="'/uploads/'+p.fileName" class="img-thumbnail">
+      </div>
+    </div>
+    <div *ngIf="photos?.length == 0">
+      <div class="text-center" >No Photos</div>
+    </div>
+  </div>
+</div>
