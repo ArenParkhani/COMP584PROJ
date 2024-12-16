@@ -1,1 +1,1 @@
-project that stores information about one to many relationships involviong cars for sale or other use.
+project that stores information about one to many relationships involving cars for sale or other use.
