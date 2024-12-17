@@ -1,0 +1,6 @@
+@CarManagementApi_HostAddress = http://*:5000
+
+GET {{CarManagementApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
