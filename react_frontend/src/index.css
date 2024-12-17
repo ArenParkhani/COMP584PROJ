@@ -1,0 +1,31 @@
+body {
+  background-color: #1a202c;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #2d3748;
+}
+
+tr:nth-child(even) {
+  background-color: #2d3748;
+}
+
+tr:nth-child(odd) {
+  background-color: #1a202c;
+}
+
+button {
+  transition: background-color 0.3s ease;
+}
